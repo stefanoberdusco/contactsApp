@@ -1,12 +1,17 @@
 import React from 'react';
-import {SafeAreaView, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {Text} from 'react-native-elements';
 
-export const ContactList = (props) => {
+export const ContactDetails = (props) => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text h4>{props.item.name}</Text>
-      <Text>{props.item.email}</Text>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text h3>{props.item.name}</Text>
+      <Text h4>
+        {props.item.address.street}, {props.item.address.city}
+      </Text>
+      <Text h4>{props.item.phone}</Text>
+      <Text h4>{props.item.email}</Text>
+    </View>
   );
 };
 
@@ -15,5 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
     height: '100%',
+    margin: 20,
+    lineHeight: 20,
   },
 });

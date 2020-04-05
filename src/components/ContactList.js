@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import {ListItem} from 'react-native-elements';
+import {Navigation} from 'react-native-navigation';
 
-export const ContactList = () => {
+export const ContactList = (props) => {
   const [contacts, setContacts] = useState([]);
   useEffect(() => {
     const fetchContacts = async () => {
@@ -25,6 +26,21 @@ export const ContactList = () => {
             subtitle={item.email}
             bottomDivider
             chevron
+            onPress={() =>
+              Navigation.push(props.componentId, {
+                component: {
+                  name: 'ContactDetails',
+                  passProps: {item},
+                  options: {
+                    topBar: {
+                      title: {
+                        text: 'Details',
+                      },
+                    },
+                  },
+                },
+              })
+            }
           />
         )}
         keyExtractor={(item) => item.email}
